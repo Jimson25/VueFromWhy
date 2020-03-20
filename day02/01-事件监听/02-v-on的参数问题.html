@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <button @click="test1()">按钮1</button>
+  <button @click="test2('abc')">按钮2</button>
+  <!-- 下面的按钮传递的是鼠标事件 -->
+  <button @click="test2">按钮3</button>
+  <!-- 要接收鼠标事件需要用到‘$’ -->
+  <button @click="test3('abc',$event)">按钮4</button>
+</div>
+<script src="../../day03/js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    methods: {
+      test1() {
+        console.log("test");
+      },
+      test2(abc) {
+        console.log(abc);
+      },
+      test3(abc, event) {
+        console.log(abc);
+        console.log(event);
+      }
+
+
+    }
+  })
+</script>
+</body>
+</html>

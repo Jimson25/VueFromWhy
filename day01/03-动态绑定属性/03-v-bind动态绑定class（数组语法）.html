@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+  <ul>
+    <li @once :class="active" @click="" v-for="(m,index) in movies">{{index}} -- {{m}}</li>
+  </ul>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+      movies: ['海王', '肖申克救赎', '阿甘正传', '泰坦尼克号']
+      active: "active"
+    },
+    created:{
+
+    },
+    methods: {
+      changeClass: function () {
+
+      }
+    }
+
+
+  })
+</script>
+</body>
+</html>

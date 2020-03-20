@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <!-- 往数组中添加元素 -->
+  <button @click="push('f')">push</button>
+  <!-- 删除数组的最后一个元素 -->
+  <button @click="pop()">pop</button>
+  <!-- 删除数组的第一个元素 -->
+  <button @click="shift()">shift</button>
+  <!-- 在数组最前面添加元素 -->
+  <button @click="unshift('111')">unshift</button>
+  <button @click="push('f')">push</button>
+  <button @click="push('f')">push</button>
+</div>
+<script src="../../day03/js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+      letters: ['a', 'b', 'c', 'd', 'e']
+    },
+    methods: {
+      push(a) {
+        this.letters.push(a);
+      },
+      pop(){
+        this.letters.pop();
+      },
+      shift(){
+        this.letters.shift();
+      },
+      unshift(a) {
+        this.letters.unshift(a);
+      }
+    }
+  })
+</script>
+</body>
+</html>

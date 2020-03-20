@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  /**
+   * filter:
+   *  必须返回一个布尔值
+   *  true:函数会自动将这次回调的n加入到一个新的数组中
+   *  false:函数会自动过滤掉这个n
+   * @type {number[]}
+   */
+  const nums = [10, 20, 111, 222, 444, 40, 50];
+
+
+  //1.取出所有小于100的数
+  let newNumbers = nums.filter(function (n) {
+    return n < 100;
+  });
+  console.log(newNumbers);
+
+  let new2Nums = newNumbers.map(function (n) {
+    return n * 2;
+  })
+  console.log(new2Nums);
+
+  /**
+   * nums.reduce(function(preValue,n){
+   *   ...
+   * },a);
+   * function:一个回调函数,nums数组中有多少个元素该函数就会执行多少次
+   *    preValue:前一次回调函数执行后的结果;
+   *    n: 数组nums中顺序取出的一个元素
+   * a: preValue的初始值;
+   * @type {number}
+   */
+  let new3Nums = new2Nums.reduce(function (preValue, n) {
+    return preValue + n;
+  }, 0);
+  console.log(new3Nums);
+</script>
+</body>
+</html>

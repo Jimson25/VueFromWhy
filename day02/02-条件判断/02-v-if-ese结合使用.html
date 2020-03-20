@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2 v-if="isShow">v-if</h2>
+  <h2 v-else="isShow">v-else</h2>
+  <button @click="change()">切换</button>
+</div>
+<script src="../../day03/js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+      isShow: false
+    },
+    methods: {
+      change() {
+        this.isShow = !this.isShow;
+      }
+    }
+  })
+</script>
+</body>
+</html>

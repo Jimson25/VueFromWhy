@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  /**
+   * 语法糖省略了Vue.extend({...})
+   * 相当于在Vue.component()中隐性调用了Vue.extend({...})
+   */
+  //全局组件
+  Vue.component('cpn1',{
+    template:`
+      <div>
+        <h2>全局组件标题</h2>
+        <p>全局组件内容</p>
+      </div>
+    `
+  });
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    components:{
+      cpn2:{
+        template:`
+          <div>
+            <h2>局部组件标题</h2>
+            <p>局部组件内容</p>
+          </div>
+        `
+      }
+    }
+  })
+</script>
+</body>
+</html>

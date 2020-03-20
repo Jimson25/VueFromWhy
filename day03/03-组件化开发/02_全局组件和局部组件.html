@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn2></cpn2>
+</div>
+<hr>
+<div id="app2">
+  <cpn></cpn>
+  <cpn2></cpn2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn =Vue.extend({
+    template: `
+      <div>
+        <p>标题</p>
+        <p>内容</p>
+      </div>`
+  });
+  const cpn2 =Vue.extend({
+    template: `
+      <div>
+        <p>标题2</p>
+        <p>内容2</p>
+      </div>`
+  });
+
+  //这里是注册全局组件,在任何Vue实例管理的标签中都能使用
+  Vue.component('cpn',cpn);
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    //这里是注册的局部组件，cpn2只能在该Vue实例管理的标签中使用
+    components:{
+      cpn2:cpn2
+    }
+  })
+
+  new Vue({
+    el:"#app2",
+  })
+</script>
+</body>
+</html>

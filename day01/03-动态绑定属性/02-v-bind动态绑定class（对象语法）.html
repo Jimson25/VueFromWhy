@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+  .isActive {
+    color: red;
+  }
+
+  .isLine {
+    background-color: yellow;
+  }
+</style>
+<div id="app">
+  <h2 :class="{isActive:isActive,isLine:isLine}"> {{message}} </h2>
+  <h2 :class="getClasses()"> {{message}} </h2>
+  <button @click="change()">按钮</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+      isActive: true,
+      isLine: false,
+    },
+    methods: {
+      change: function () {
+        this.isActive = !this.isActive;
+      },
+      getClasses: function () {
+        return {isActive: this.isActive, isLine: this.isLine};
+      }
+    }
+  })
+</script>
+</body>
+</html>

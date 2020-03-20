@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div @click="test2()">
+    <button @click="test1()">按钮1</button>
+    <button @click.stop="test1()">按钮2</button>
+  </div>
+  <!-- 监听键盘按钮点击 -->
+  <input type="text" @keyup.Enter="test3()">
+  <script src="../../day03/js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "message"
+      },
+      methods: {
+        test1() {
+          console.log('test1');
+        },
+        test2() {
+          console.log('test2');
+        },
+        test3() {
+          console.log('enterUp');
+        }
+      }
+    })
+  </script>
+</div>
+</body>
+</html>
