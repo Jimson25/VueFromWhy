@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<template id="cpn1">
+  <div>
+    <h2>{{count}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+  <hr>
+  <cpn2></cpn2>
+  <cpn2></cpn2>
+  <cpn2></cpn2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  /**
+   * 为什么组件中的data必须是函数？
+   *  在Vue开发中，组件会被分离出去，需要时再调用，即一个组件可能会被多次调用，
+   *  如果data是一个对象而不是函数，那么当我们多次使用同一个组件时，他们的data会指向内存中的同一个对象地址，即数据没有隔离
+   *  而当data为一个函数时，每个组件在调用时都会返回一个新的对象，即每个组建的data数据都是隔离的
+   */
+  //正常的写法每个组件的数据是隔离的
+  Vue.component('cpn1', {
+    template: "#cpn1",
+    data() {
+      return {
+        count: 0,
+      }
+    },
+    methods: {
+      increment() {
+        this.count++;
+      },
+      decrement() {
+        this.count--;
+      },
+    }
+  });
+
+  //这种写法相当于data返回的同一个对象，那么每次调用时各组件间的数据都是共享的
+  Vue.component('cpn2', {
+    template: "#cpn1",
+    data() {
+      return obj;
+    },
+    methods: {
+      increment() {
+        this.count++;
+      },
+      decrement() {
+        this.count--;
+      },
+    }
+  });
+
+  const obj = {
+    count: 0,
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    }
+  })
+</script>
+</body>
+</html>
