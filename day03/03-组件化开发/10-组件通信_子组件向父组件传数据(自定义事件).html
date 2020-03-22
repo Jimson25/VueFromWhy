@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+//父组件
+<div id="app">
+  <!-- 注3 父组件监听cpn-click事件并触发cpnClick函数 -->
+  <cpn @cpn-click="cpnClick"></cpn>
+</div>
+
+//子组件模板
+<template id="cpn">
+  <div>
+    <div v-for="book in bookList">
+      <!--   注1   -->
+      <button @click="btnClick(book)">{{book.name}}</button>
+    </div>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+  // -- 子组件向父组件传数据 --
+  //1.子组件触发点击事件调用对应方法  注1
+  //2.子组件使用创建自定义事件向父组件传递参数  注2
+  //3.父组件监听对应事件并做数据处理 注3
+
+  // 子组件
+  const cpn = {
+    template: '#cpn',
+    data() {
+      return {
+        bookList: [
+          {id: 1, name: "三国"},
+          {id: 2, name: "红楼"},
+          {id: 3, name: "水浒"},
+          {id: 4, name: "西游"},
+        ]
+      }
+    },
+    methods: {
+      //当点击button按钮时触发,使用$emit传出数据,其中'cpn-click'为自定义事件名称,book为要传递的参数
+      btnClick(book) {
+        console.log(book, '--子组件');
+        //注2
+        this.$emit('cpn-click', book);
+      }
+    }
+  };
+
+  //父组件
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    methods: {
+      cpnClick(book) {
+        console.log(book, '--父组件');
+      }
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</body>
+</html>
