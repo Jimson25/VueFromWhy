@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn :cmovies="movies"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <!--  这里展示的是props中的内容  -->
+    <h2>{{cmessage}}</h2>
+    <p>{{cmovies}}</p>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    //使用数组接收
+    // props: ['cmovies', 'cmessage'],
+    //使用对象接收
+    props: {
+      //1.使用对象接收限制父组件传递的参数类型
+      // cmovies: Array,
+      // cmessage: String,
+      //2.提供一些默认值
+      cmessage: {
+        //限制类型为字符串
+        type: String,
+        //设置默认值为'哈哈哈哈'
+        default: '哈哈哈哈',
+
+      },
+      cmovies: {
+        type: Array,
+        //当参数类型为对象或者数组时,要设置默认值就必须返回一个对象,否则会报错
+        // default:[],
+        default() {
+          return [];
+        },
+        //设置该属性为必须要提供的
+        required: true,
+      }
+    },
+    data() {
+      return {}
+    },
+    methods: {},
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+      movies: ['西游记', '红楼梦', '三国演义', '水浒传']
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</body>
+</html>
