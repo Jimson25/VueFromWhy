@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 1 -->
+  <cpn ref="child"></cpn>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<template id="cpn">
+  <div>
+    <p>这是子组件</p>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+  /**
+   * 通过$refs访问子组件:
+   *    1.给子组件添加`ref`属性,例如:ref = 'aaa' =>1;
+   *    2.在父组件通过this.$refs.aaa指向子组件并执行相关操作 =>2;
+   * @type {Vue}
+   */
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    methods: {
+      btnClick() {
+        //2
+        console.log(this.$refs.child.name);
+        this.$refs.child.name = "李四";
+        this.$refs.child.showName();
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            name: '张三',
+          }
+        },
+        methods: {
+          showName() {
+            console.log(this.name)
+          }
+        }
+      }
+    },
+
+  })
+</script>
+</body>
+</html>
