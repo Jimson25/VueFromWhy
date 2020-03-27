@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p>这是父组件</p>
+  <cpn></cpn>
+</div>
+<template id="cpn">
+  <div class="cpn">
+    <p>这是子组件</p>
+    <button @click="showName">showName</button>
+    <button @click="showParentMessage">showParentMessage</button>
+    <cpn-child></cpn-child>
+  </div>
+</template>
+<template id="cpnclild">
+  <div class="cpnclild">
+    这是子组件的子组件
+    <br>
+    <button @click="showParentParam">showParentParam</button>
+    <button @click="showRoot">showRoot</button>
+  </div>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    components: {
+      cpn: {
+        template: "#cpn",
+        data() {
+          return {
+            name: "张三",
+          }
+        },
+        methods: {
+          showName() {
+            console.log(this.name);
+          },
+          showParentMessage() {
+            console.log(this.$parent.message);
+          }
+        },
+        components: {
+          cpnChild: {
+            template: "#cpnclild",
+            data() {
+              return {}
+            },
+            methods: {
+              showParentParam() {
+                console.log(this.$parent.name);
+              },
+              showRoot(){
+                console.log(this.$root.message);
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
