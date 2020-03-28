@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!-- 使用组件但是插槽没有添加扩展 -->
+  <cpn></cpn>
+  <!-- 使用组件并且在插槽中添加一个按钮 -->
+  <cpn>
+    <button>按钮</button>
+  </cpn>
+  <hr>
+  <cpn2></cpn2>
+  <cpn2><p>这里替换了原先插槽内定义的默认的按钮</p></cpn2>
+</div>
+<template id="cpn">
+  <div>
+    <h2>这是组件cpn</h2>
+    <!--  这里定义了一个插槽,当需要进行扩展时代码会添加到这里,这是一个空的插槽,当没有进行扩展时没有任何显示  -->
+    <slot></slot>
+  </div>
+</template>
+<!----------------------------------------------------->
+<template id="cpn2">
+  <div>
+    <h2>这是组件cpn2</h2>
+    <!--  这里也定义了一个插槽,但是添加了默认元素,即当不对插槽进行扩展时会默认显示定义在插槽内的内容  -->
+    <slot>
+      <button>按钮</button>
+    </slot>
+  </div>
+</template>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {}
+        },
+        methods: {}
+      },
+      cpn2: {
+        template: '#cpn2',
+      }
+    }
+  })
+</script>
+</body>
+</html>
