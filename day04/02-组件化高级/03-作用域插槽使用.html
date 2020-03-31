@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn>
+    <!--  在Vue2.5.x以下必须要一个template  -->
+    <!--  这里使用'slot'指向子组件里面的插槽,通过插槽对象指向data数据  -->
+    <template slot-scope="slot">
+      <span>{{slot.data.join(' - ')}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <!--  这里使用data引用planguages  -->
+    <slot :data="planguages">
+      <!--   插槽默认显示的内容   -->
+      <ul>
+        <li v-for="item in planguages">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "message"
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            planguages: ['Java', 'Script', 'C++', 'Python', 'Go']
+          }
+        }
+      }
+    },
+  })
+</script>
+</body>
+</html>
