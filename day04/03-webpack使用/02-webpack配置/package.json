@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "dependencies": {},
   "devDependencies": {
+    "css-loader": "^3.4.2",
     "webpack": "^3.6.0"
   },
   "scripts": {
