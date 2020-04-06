@@ -10,6 +10,7 @@ const about = () => import ('../components/About')
 const user = () => import ('../components/User')
 const message = () => import('../components/Message')
 const news = () => import('../components/News')
+const profile = () => import('../components/Profile')
 
 //1.通过Vue.use(插件),安装插件
 Vue.use(VueRouter);
@@ -27,13 +28,13 @@ const routes = [
       {
         path: 'message',
         component: message
-      },{
+      }, {
         path: 'news',
         component: news
       },
       {
-        path:'',
-        redirect:'news'
+        path: '',
+        redirect: 'news'
       }
     ]
   },
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/user/:userId',
     component: user
+  },
+  {
+    path: '/profile',
+    component: profile
   }
 ];
 const router = new VueRouter({

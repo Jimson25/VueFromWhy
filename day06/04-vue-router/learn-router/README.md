@@ -116,6 +116,16 @@ const Home = () => import('../components/Home.vue')
 4. 在`Home`组件中配置`Message`和`News`的 `<router-link>`及 `<router-news>`即可
 5. 可为`home`路由配置默认打开的组件,方法同上
 
+### (五)路由跳转参数传递
+#### 方式一: 参考<获取动态路由配置的userId>
+#### 方式二:
+1. 添加Profile组件并添加相关信息
+2. 在 `/router/index.js`中配置profile组件路由
+3. 在 `App.vue`中添加 profile对应的 `<router-link>`并配置`query`
+4. 配置信息:`<router-link :to="{path:'/profile',query:{name:'张三',age:'18'}}">档案</router-link>`
+5. 可将query提取到 `data`中并从服务器获取数据
+6. 在`Profile`组件接收传递的参数 `<h3>Name:{{this.$route.query.name}} - Age:{{this.$route.query.age}}</h3>`
+
 
 
 

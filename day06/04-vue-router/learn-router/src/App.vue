@@ -6,8 +6,14 @@
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
     <router-link v-bind:to="'/user/'+ userId">我的</router-link>
+<!--    <router-link :to="{path:'/profile',query:{-->
+<!--      name:'张三',age:'18'-->
+<!--    }}">档案-->
+<!--    </router-link>-->
+    <router-link :to="{path:'/profile',query:userMsg}">档案</router-link>
     <!--  路由代码跳转  -->
     <!--    <button @click="routerLinkHome">这也是首页</button>-->
+    <hr>
     <router-view></router-view>
   </div>
 </template>
@@ -18,6 +24,11 @@
     data() {
       return {
         userId: 'zhangsan',
+        userMsg: {
+          name: '张三',
+          age: 18,
+          addr: '北京'
+        }
       }
     },
     methods: {
