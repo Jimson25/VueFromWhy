@@ -5,9 +5,11 @@ import Vue from 'vue'
 // import about from '../components/About'
 // import user from '../components/User'
 
-const home  = ()=> import ('../components/Home')
-const about  = ()=> import ('../components/About')
-const user  = ()=> import ('../components/User')
+const home = () => import ('../components/Home')
+const about = () => import ('../components/About')
+const user = () => import ('../components/User')
+const message = () => import('../components/Message')
+const news = () => import('../components/News')
 
 //1.通过Vue.use(插件),安装插件
 Vue.use(VueRouter);
@@ -20,7 +22,20 @@ const routes = [
   },
   {
     path: '/home',
-    component: home
+    component: home,
+    children: [
+      {
+        path: 'message',
+        component: message
+      },{
+        path: 'news',
+        component: news
+      },
+      {
+        path:'',
+        redirect:'news'
+      }
+    ]
   },
   {
     path: '/about',

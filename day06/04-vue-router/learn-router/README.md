@@ -97,6 +97,24 @@ const Home = () => import('../components/Home.vue')
 4. 此时打包项目,发现 `dist/static/js`目录中除了原本的三个js文件外又多出了几个js文件
 5. 这就是配置了路由懒加载后单独拆分出来的组件js,只有用户打开对应页面时才会向服务器请求该js文件
 
+### (四) 嵌套路由
+> 假设在home页面中有两个功能,分别是message和news,
+> 我们希望能通过 `/home/message` 和 `/home/news`分别访问对应组件,此时就需要用到嵌套路由
+
+1. 创建`Message`和`News`两个组件并添加相关内容
+2. 在 `router/index.js`中导入`Message`和`News`组件
+3. 在 `home`路由下添加 `children`的数组属性并配置字组件路由
+    ```
+        children: [
+            {
+               path: 'message',
+               component: message
+            },
+            ...
+        ]
+    ```
+4. 在`Home`组件中配置`Message`和`News`的 `<router-link>`及 `<router-news>`即可
+5. 可为`home`路由配置默认打开的组件,方法同上
 
 
 
