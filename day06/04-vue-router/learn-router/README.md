@@ -126,6 +126,19 @@ const Home = () => import('../components/Home.vue')
 5. 可将query提取到 `data`中并从服务器获取数据
 6. 在`Profile`组件接收传递的参数 `<h3>Name:{{this.$route.query.name}} - Age:{{this.$route.query.age}}</h3>`
 
+### (六)导航守卫
+#### 在我们切换组件时,默认显示的页面标题是项目的名称,需求:将标题修改为组件名称
+1. 编辑 `router/index.js` ,在每个组件的路由下添加 `meta{title:'名称'}`属性
+2. 在 `router/index.js`中创建完对象后添加如下代码
+    ```
+        router.beforeEach((to, from, next) => {
+          window.document.title = to.matched[0].meta.title;
+          next();
+        })
+    ```
+
+
+
 
 
 

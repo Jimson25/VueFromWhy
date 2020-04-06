@@ -24,6 +24,9 @@ const routes = [
   {
     path: '/home',
     component: home,
+    meta:{
+      title:'首页'
+    },
     children: [
       {
         path: 'message',
@@ -40,21 +43,36 @@ const routes = [
   },
   {
     path: '/about',
-    component: about
+    component: about,
+    meta:{
+      title:'关于'
+    },
   },
   {
     path: '/user/:userId',
-    component: user
+    component: user,
+    meta:{
+      title:'用户'
+    },
   },
   {
     path: '/profile',
-    component: profile
+    component: profile,
+    meta:{
+      title:'档案'
+    },
   }
 ];
 const router = new VueRouter({
   routes,
   mode: 'history',
   linkActiveClass: 'isActive'
+})
+
+// 导航守卫相关
+router.beforeEach((to, from, next) => {
+  window.document.title = to.matched[0].meta.title;
+  next();
 })
 
 //3. 将router对象传入Vue对象中
