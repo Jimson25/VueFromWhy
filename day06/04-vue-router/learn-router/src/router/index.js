@@ -35,10 +35,10 @@ const routes = [
         path: 'news',
         component: news
       },
-      {
-        path: '',
-        redirect: 'news'
-      }
+      // {
+      //   path: '',
+      //   redirect: 'news'
+      // }
     ]
   },
   {

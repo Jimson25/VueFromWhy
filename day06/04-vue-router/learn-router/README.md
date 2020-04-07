@@ -137,6 +137,18 @@ const Home = () => import('../components/Home.vue')
         })
     ```
 
+### (七)keep-alive
+#### 用于保证切换其他组件后当前组件不会被销毁
+#### 属性:
+1. `include` 默认添加的,不用管它
+2. `exclude` 要排除的组件,即每次打开关闭都会重新创建销毁等
+```html
+<!-- 排除`name`属性为`profile`的组件 -->
+<keep-alive exclude="profile">
+  <router-view/>
+</keep-alive>
+```
+
 
 
 
